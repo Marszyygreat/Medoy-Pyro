@@ -15,8 +15,8 @@ from pyrogram.errors import YouBlockedUser
 from pyrogram.types import *
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.basic import edit_or_reply
-from ProjectMan.utils import extract_user
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.utils import extract_user
 
 from .help import add_command_help
 
