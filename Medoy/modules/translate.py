@@ -12,7 +12,7 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.basic import edit_or_reply
+from Medoy.helpers.basic import edit_or_reply
 
 from .help import add_command_help
 
