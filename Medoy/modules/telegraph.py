@@ -13,8 +13,8 @@ from pyrogram.types import Message
 from telegraph import Telegraph, exceptions, upload_file
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.basic import edit_or_reply, get_text
-from ProjectMan.helpers.tools import *
+from Medoy.helpers.basic import edit_or_reply, get_text
+from Medoy.helpers.tools import *
 
 from .help import *
 
