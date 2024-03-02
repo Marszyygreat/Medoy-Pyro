@@ -21,7 +21,7 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.PyroHelpers import ReplyCheck
+from Medoy.helpers.PyroHelpers import ReplyCheck
 
 from .help import *
 
