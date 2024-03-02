@@ -1,5 +1,5 @@
 try:
-    from ProjectMan.helpers.SQL import BASE, SESSION
+    from Medoy.helpers.SQL import BASE, SESSION
 except ImportError:
     raise AttributeError
 
