@@ -23,10 +23,10 @@ from pyrogram.raw.types import InputStickerSetShortName
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.basic import edit_or_reply
-from ProjectMan.helpers.PyroHelpers import ReplyCheck
-from ProjectMan.helpers.tools import get_arg, get_text, resize_media
-from ProjectMan.utils.tools import add_text_img, bash
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.PyroHelpers import ReplyCheck
+from Medoy.helpers.tools import get_arg, get_text, resize_media
+from Medoy.utils.tools import add_text_img, bash
 
 from .help import add_command_help
 
