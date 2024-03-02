@@ -20,9 +20,9 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.adminHelpers import DEVS
-from ProjectMan.helpers.basic import edit_or_reply
-from ProjectMan.helpers.tools import get_arg
+from Medoy.helpers.adminHelpers import DEVS
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.tools import get_arg
 
 from .help import add_command_help
 
