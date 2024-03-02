@@ -14,14 +14,14 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.basic import edit_or_reply
-from ProjectMan.helpers.PyroHelpers import ReplyCheck
-from ProjectMan.utils.misc import extract_user
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.PyroHelpers import ReplyCheck
+from Medoy.utils.misc import extract_user
 
 from .help import add_command_help
 
 flood = {}
-profile_photo = "ProjectMan/modules/cache/pfp.jpg"
+profile_photo = "Medoy/modules/cache/pfp.jpg"
 
 
 @Client.on_message(filters.command(["block"], cmd) & filters.me)
