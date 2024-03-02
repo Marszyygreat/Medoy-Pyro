@@ -14,9 +14,9 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan import BOTLOG_CHATID, LOGGER
-from ProjectMan.helpers.basic import edit_or_reply
-from ProjectMan.helpers.misc import HAPP
+from Medoy import BOTLOG_CHATID, LOGGER
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.misc import HAPP
 
 from .help import add_command_help
 
