@@ -16,11 +16,11 @@ from pyrogram.raw import functions
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan import StartTime
-from ProjectMan.helpers.basic import edit_or_reply
-from ProjectMan.helpers.constants import WWW
-from ProjectMan.helpers.PyroHelpers import SpeedConvert
-from ProjectMan.utils.tools import get_readable_time
+from Medoy import StartTime
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.constants import WWW
+from Medoy.helpers.PyroHelpers import SpeedConvert
+from Medoy.utils.tools import get_readable_time
 
 from .help import add_command_help
 
