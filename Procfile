@@ -1,1 +1,1 @@
-worker: python3 -m Medoy
+worker: bash start
