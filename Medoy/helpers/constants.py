@@ -16,11 +16,11 @@ class First:
       __Thanks For Using me__
 
 ✣ **Userbot Version :** `{}`
-✣ **Group Support :** [Sharing Userbot](t.me/sharinguserbot)
-✣ **Channel Man :** [Lunatic0de](t.me/Lunatic0de)
-✣ **Owner Repo :** [Risman](t.me/mrismanaziz)
-✣ **Repo :** [PyroMan-Userbot](https://github.com/mrismanaziz/PyroMan-Userbot)"""
-    CREATOR = 'I was created by my master <a href="https://github.com/mrismanaziz/PyroMan-Userbot">Man</a> on a rainy day.'
+✣ **Group Support :** [Sharing Userbot](https://t.me/mutualanonlyone)
+✣ **Channel Medoy :** [Kegabutan](t.me/KegabutanDoy)
+✣ **Owner Repo :** [Medoy](t.me/Mhmmdmedoy)
+✣ **Repo :** [Medoy-Userbot](https://github.com/Marszyygreat/Medoy-Pyro)"""
+    CREATOR = 'I was created by my master <a href="https://github.com/Marszyygreat/Medoy-Pyro">Man</a> on a rainy day.'
     MSG_ON = """
 🔥 **Medoy-Userbot Berhasil Di Aktifkan**
 ━━
