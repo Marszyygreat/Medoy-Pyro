@@ -27,8 +27,8 @@ Ketika anda sudah memasang userbot ini, berarti anda sudah siap dengan resikonya
 - Generate Session via <a href="https://t.me/StringManRobot">Telegram String Generation Bot</a>
 ## 🏷 Support
 
-- Follow Channel [@Lunatic0de](https://t.me/Lunatic0de) untuk info Update bot 
-- Gabung Group [@SharingUserbot](https://t.me/SharingUserbot) untuk diskusi, pelaporan bug, dan bantuan tentang PyroMan-Userbot.
+- Follow Channel (https://t.me/KegabutanDoy) untuk info Update bot 
+- Gabung Group (https://t.me/mutualanonlyone) untuk diskusi, pelaporan bug, dan bantuan tentang PyroMan-Userbot.
 
 ## 👨🏻‍💻 Credits
 -  [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
@@ -44,4 +44,4 @@ Ketika anda sudah memasang userbot ini, berarti anda sudah siap dengan resikonya
 -  [Toni](https://github.com/Toni880) : Prime-UserBot
 -  [Sendi](https://github.com/SendiAp) : Rose-UserBot
 ## 📑 License
-Licensed under [GNU General Public License v3.0](https://github.com/Marszyygreat/Medoy-Pyro/blob/Medoy-Pyro/LICENSE) All designs were created by [@Mhmmdmedoy](https://github.com/Mhmmdmedoy)
+Licensed under [GNU General Public License v3.0](https://github.com/Marszyygreat/Medoy-Pyro/blob/Medoy-Pyro/LICENSE) All designs were created by [@Siid0yyy](https://github.com/Mhmmdmedoy)
