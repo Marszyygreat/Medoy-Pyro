@@ -21,13 +21,13 @@ from telegraph import exceptions, upload_file
 from config import BOT_VER, CHANNEL
 from config import CMD_HANDLER as cmd
 from config import GROUP
-from ProjectMan import CMD_HELP, StartTime
-from ProjectMan.helpers.basic import edit_or_reply
-from ProjectMan.helpers.PyroHelpers import ReplyCheck
-from ProjectMan.helpers.SQL.globals import gvarstatus
-from ProjectMan.helpers.tools import convert_to_image
-from ProjectMan.utils import get_readable_time
-from ProjectMan.utils.misc import restart
+from Medoy import CMD_HELP, StartTime
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.PyroHelpers import ReplyCheck
+from Medoy.helpers.SQL.globals import gvarstatus
+from Medoy.helpers.tools import convert_to_image
+from Medoy.utils import get_readable_time
+from Medoy.utils.misc import restart
 
 from .help import add_command_help
 
@@ -46,7 +46,7 @@ async def alive(client: Client, message: Message):
     send = client.send_video if alive_logo.endswith(".mp4") else client.send_photo
     uptime = await get_readable_time((time.time() - StartTime))
     man = (
-        f"**[PyroMan-Userbot](https://github.com/mrismanaziz/PyroMan-Userbot) is Up and Running.**\n\n"
+        f"**[Medoy-Userbot](https://github.com/Marszyygreat/Medoy-Userbot) is Up and Running.**\n\n"
         f"<b>{alive_text}</b>\n\n"
         f"{emoji} <b>Master :</b> {client.me.mention} \n"
         f"{emoji} <b>Modules :</b> <code>{len(modules)} Modules</code> \n"
