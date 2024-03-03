@@ -1,7 +1,7 @@
 <p align="center"> 〆 ᴍᴇᴅᴏʏ - ᴜsᴇʀʙᴏᴛ 〆
 <p align="center">
   <img src="https://telegra.ph//file/cd9e19d64d6aa7cd695a9.jpg">
-# Medoy-Pyro Telegram
+Medoy-Pyro Telegram
 
 Medoy-Userbot adalah userbot Telegram modular yang berjalan di Python3 dengan Library Pyrogram.
 
