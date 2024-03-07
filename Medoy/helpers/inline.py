@@ -48,30 +48,6 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 
-def cb_wrapper(func):
-    async def wrapper(client, cb):
-        users = list_users
-        if cb.from_user.id not in users:
-            await cb.answer(
-                "Hanya Pengguna Premium Yang Dapat Mengakses Tombol Ini, Beli Sekarang di @RosePremiumBot",
-                cache_time=0,
-                show_alert=True,
-            )
-        else:
-            try:
-                await func(client, cb)
-            except MessageNotModified:
-                await cb.answer("🤔🧐")
-            except Exception:
-                print(format_exc())
-                await cb.answer(
-                    f"Oh Tidak, Ada yang Tidak Beres. Silakan Periksa Log!",
-                    cache_time=0,
-                    show_alert=True,
-                )
-
-    return wrapper
-
 
 def inline_wrapper(func):
     async def wrapper(client, inline_query):
