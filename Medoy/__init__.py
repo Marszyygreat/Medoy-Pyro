@@ -94,6 +94,8 @@ aiosession = ClientSession()
 
 CMD_HELP = {}
 
+ids = []
+
 scheduler = AsyncIOScheduler()
 
 StartTime = time.time()
