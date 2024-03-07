@@ -11,6 +11,7 @@ from prettytable import PrettyTable
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
+from Medoy.helpers.PyroHelpers import ReplyCheck
 from config import CMD_HANDLER
 from Medoy import CMD_HELP, app
 from Medoy.helpers.basic import edit_or_reply
