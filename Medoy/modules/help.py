@@ -49,7 +49,7 @@ async def module_help(client: Client, message: Message):
                 reply_to_message_id=ReplyCheck(message),
             )
             await xx.reply(
-                f"**Usage:** `{cmds}help broadcast` **To View Module Information**"
+                f"**Usage:** `{CMD_HANDLER}help broadcast` **To View Module Information**"
             )
             return
 
@@ -59,7 +59,7 @@ async def module_help(client: Client, message: Message):
             this_command = f"**Help For {str(help_arg).upper()}**\n\n"
             for x in commands:
                 this_command += f"**Command:** `{str(x)}`\n**Function:** `{str(commands[x])}`\n\n"
-            this_command += "© @GeezRam - @UserbotCh"
+            this_command += "© Medoy Userbot"
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.MARKDOWN
             )
