@@ -119,7 +119,7 @@ bot1 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=STRING_SESSION1,
-        plugins=dict(root="Medoy/modules"),
+        plugins=dict(root="Medoy/modules/bot"),
     )
     if STRING_SESSION1
     else None
