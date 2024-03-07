@@ -1,7 +1,6 @@
 from math import ceil
 from traceback import format_exc
 
-from Ubot.core.db import *
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import (
     InlineKeyboardButton,
