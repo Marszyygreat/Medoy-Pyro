@@ -1,8 +1,6 @@
 from pyrogram.types import InlineKeyboardButton, WebAppInfo
 from Medoy import CMD_HELP 
 
-cmds = CMD_HANDLER
-
 class Data:
     
    num_basic_modules = len(CMD_HELP)
