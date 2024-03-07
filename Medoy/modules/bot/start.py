@@ -16,8 +16,8 @@ async def start(app, message):
     caption = "Yoo, saya Medoy Userbot, gada yang spesial dari saya\ntapi boong..."
     reply_markup = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Channel", url="https://t.me/{CHANNEL}"),
-            InlineKeyboardButton("Group", url="https://t.me/{GROUP}"),
+            InlineKeyboardButton("Channel", url="https://t.me/KegabutanDoy"),
+            InlineKeyboardButton("Group", url="https://t.me/mutualanonlyone"),
         ],
     ])
 
