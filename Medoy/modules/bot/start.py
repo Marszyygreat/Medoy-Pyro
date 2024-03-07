@@ -1,7 +1,7 @@
 import random
 from Medoy import *
 from pyrogram import filters
-from config import *
+from config import CHANNEL, GROUP
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
