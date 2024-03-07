@@ -62,7 +62,6 @@ async def help_function(answers):
 
 
 @app.on_inline_query()
-@inline_wrapper
 async def inline_query_handler(client: Client, query):
     try:
         text = query.query.strip().lower()
