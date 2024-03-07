@@ -15,7 +15,8 @@ from config import CMD_HANDLER
 from Medoy import CMD_HELP, app
 from Medoy.helpers.basic import edit_or_reply
 from Medoy.helpers.utility import split_list
-
+from Medoy import *
+from config import *
 
 @Client.on_message(filters.command("help", CMD_HANDLER) & filters.me)
 async def module_help(client: Client, message: Message):
