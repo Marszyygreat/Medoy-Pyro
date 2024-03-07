@@ -8,6 +8,7 @@ from Medoy.helpers.data import Data
 from Medoy import CMD_HELP, app
 from Medoy.helpers.inline import cb_wrapper, paginate_help
 from Medoy import ids as users
+from Medoy import *
 
 @Client.on_callback_query()
 async def _callbacks(_, callback_query: CallbackQuery):
