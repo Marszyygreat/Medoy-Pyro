@@ -18,7 +18,6 @@ from pyrogram.types import (
 from Medoy.helpers.data import Data
 from Medoy.helpers.inline import inline_wrapper, paginate_help
 from Medoy import CMD_HELP, StartTime, app
-from config import OWNER_ID
 
 
 async def get_readable_time(seconds: int) -> str:
