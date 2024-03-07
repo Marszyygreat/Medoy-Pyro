@@ -16,6 +16,7 @@ from config import BOT_VER, CMD_HANDLER
 from Medoy import BOTLOG_CHATID, LOGGER, LOOP, aiosession, bot1, bots
 from Medoy.helpers.misc import create_botlog, heroku
 from Medoy.modules import ALL_MODULES
+from . import *
 
 MSG_ON = """
 🔥 **Medoy-Userbot Berhasil Di Aktifkan**
@@ -27,6 +28,8 @@ MSG_ON = """
 
 
 async def main():
+    await app.start()
+    LOGGER("Medoy").info("Loading Everything.")
     for all_module in ALL_MODULES:
         importlib.import_module(f"Medoy.modules.{all_module}")
     for bot in bots:
