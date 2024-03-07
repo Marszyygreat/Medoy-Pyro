@@ -111,7 +111,7 @@ app = Client(
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
-    plugins=dict(root="Medoy/bot"),
+    plugins=dict(root="Medoy/modules/bot"),
     in_memory=True,
 )
 
@@ -121,7 +121,7 @@ bot1 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=STRING_SESSION1,
-        plugins=dict(root="Medoy/modules/bot"),
+        plugins=dict(root="Medoy/modules"),
     )
     if STRING_SESSION1
     else None
