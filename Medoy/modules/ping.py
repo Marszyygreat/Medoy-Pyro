@@ -1,129 +1,85 @@
-# Ported By @Siid0yyy & @Mhmmdd23
-# Copyright (C) 2019 The Raphielscape Company LLC.
+# Credits: @mrismanaziz
+# Copyright (C) 2022 Pyro-ManUserbot
 #
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
+# This file is a part of < https://github.com/mrismanaziz/PyroMan-Userbot/ >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/mrismanaziz/PyroMan-Userbot/blob/main/LICENSE/>.
 #
-# ReCode by @mrismanaziz
-# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # t.me/SharingUserbot & t.me/Lunatic0de
 
+from prettytable import PrettyTable
+from pyrogram import Client, enums, filters
+from pyrogram.types import Message
 
-import time
-from datetime import datetime
+from Medoy.helpers.PyroHelpers import ReplyCheck
+from config import CMD_HANDLER
+from Medoy import CMD_HELP, app
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.utility import split_list
+from Medoy import *
+from config import *
 
-from speedtest import Speedtest
+@Client.on_message(filters.command("help", CMD_HANDLER) & filters.me)
+async def module_help(client: Client, message: Message):
+    cmd = message.command
+    help_arg = ""
+    bot_username = (await app.get_me()).username
+    if len(cmd) > 1:
+        help_arg = " ".join(cmd[1:])
+    elif not message.reply_to_message and len(cmd) == 1:
+        try:
+            nice = await client.get_inline_bot_results(bot=bot_username, query="helper")
+            await asyncio.gather(
+                message.delete(),
+                client.send_inline_bot_result(
+                    message.chat.id, nice.query_id, nice.results[0].id
+                ),
+            )
+        except BaseException as e:
+            print(f"{e}")
+            ac = PrettyTable()
+            ac.header = False
+            ac.title = "Medoy Userbot Plugins"
+            ac.align = "l"
+            for x in split_list(sorted(CMD_HELP.keys()), 2):
+                ac.add_row([x[0], x[1] if len(x) >= 2 else None])
+            xx = await client.send_message(
+                message.chat.id,
+                f"{str(ac)}\n• Medoy Userbot •",
+                reply_to_message_id=ReplyCheck(message),
+            )
+            await xx.reply(
+                f"Usage: {CMD_HANDLER}help broadcast To View Module Information"
+            )
+            return
 
-from . import (
-     StartTime,
-     Medoy_cmd,
-     DEVLIST,
-     eor,
-     humanbytes,
-     devs_cmd,
-     )
-from time import sleep
-
-
-async def get_readable_time(seconds: int) -> str:
-    count = 0
-    up_time = ""
-    time_list = []
-    time_suffix_list = ["s", "m", "Jam", "Hari"]
-
-    while count < 4:
-        count += 1
-        remainder, result = divmod(
-            seconds, 60) if count < 3 else divmod(
-            seconds, 24)
-        if seconds == 0 and remainder == 0:
-            break
-        time_list.append(int(result))
-        seconds = int(remainder)
-
-    for x in range(len(time_list)):
-        time_list[x] = str(time_list[x]) + time_suffix_list[x]
-    if len(time_list) == 4:
-        up_time += f"{time_list.pop()}, "
-
-    time_list.reverse()
-    up_time += ":".join(time_list)
-
-    return up_time
-
-
-@Medoy_cmd(pattern=r"^pink$", incoming=True, from_users=DEVLIST)
-@devs_cmd(incoming=True, from_users=DEVLIST, pattern=r"^Cpink$")
-async def _(ping):
-    uptime = await get_readable_time((time.time() - StartTime))
-    start = datetime.now()
-    ping = await eor(ping, "✧")
-    await ping.edit("✧✧")
-    await ping.edit("✧✧✧")
-    await ping.edit("✧✧✧✧")
-    await ping.edit("✧✧✧✧✧")
-    end = datetime.now()
-    duration = (end - start).microseconds / 1000
-    user = await ping.client.get_me()
-    await ping.edit("⚡")
-    sleep(3)
-    await ping.edit(
-        f"✧ Medoy 𝚄serbot ✧\n\n"
-        f"✧ 𝙿𝙸𝙽𝙶𝙴𝚁 : %sms\n"
-        f"✧ 𝚄𝙿𝚃𝙸𝙼𝙴 : {uptime} \n"
-        f"✧ 𝙾𝚆𝙽𝙴𝚁 : [{user.first_name}](tg://user?id={user.id})" % (duration)
-    )
+    if help_arg:
+        if help_arg in CMD_HELP:
+            commands: dict = CMD_HELP[help_arg]
+            this_command = f"Help For {str(help_arg).upper()}\n\n"
+            for x in commands:
+                this_command += f"Command: {str(x)}\nFunction: {str(commands[x])}\n\n"
+            this_command += "© Medoy Userbot"
+            await edit_or_reply(
+                message, this_command, parse_mode=enums.ParseMode.MARKDOWN
+            )
+        else:
+            await edit_or_reply(
+                message,
+                f"{help_arg} tidak ada dalam list modul.",
+            )
 
 
-@Medoy_cmd(pattern="ping$")
-@devs_cmd(incoming=True, from_users=DEVLIST, pattern=r"^Cping$")
-async def _(ping):
-    uptime = await get_readable_time((time.time() - StartTime))
-    start = datetime.now()
-    xping = await eor(ping, "Pinging....")
-    end = datetime.now()
-    duration = (end - start).microseconds / 1000
-    await xping.edit(
-        f"PONG!! 🍭\nPing : %sms\nBot Uptime : {uptime}🕛" % (duration)
-    )
 
+def add_command_help(module_name, commands):
+    if module_name in CMD_HELP.keys():
+        command_dict = CMD_HELP[module_name]
+    else:
+        command_dict = {}
 
-@Medoy_cmd(pattern="lping$")
-@devs_cmd(incoming=True, from_users=DEVLIST, pattern=r"^Lping$")
-async def _(ping):
-    uptime = await get_readable_time((time.time() - StartTime))
-    start = datetime.now()
-    lping = await eor(ping, "★ PING ★")
-    await lping.edit("★★ PING ★★")
-    await lping.edit("★★★ PING ★★★")
-    await lping.edit("★★★★ PING ★★★★")
-    await lping.edit("✦҈͜͡➳ PONG!")
-    end = datetime.now()
-    duration = (end - start).microseconds / 1000
-    user = await ping.client.get_me()
-    await lping.edit(
-        f"❃ Ping !! "
-        f"%sms \n"
-        f"❃ Uptime - "
-        f"{uptime} \n"
-        f"✦҈͜͡➳ Master : [{user.first_name}](tg://user?id={user.id})" % (duration)
-    )
+    for x in commands:
+        for y in x:
+            if y is not x:
+                command_dict[x[0]] = x[1]
 
-
-@Medoy_cmd(pattern="keping$")
-@devs_cmd(incoming=True, from_users=DEVLIST, pattern=r"^Kping$")
-async def _(pong):
-    await get_readable_time((time.time() - StartTime))
-    start = datetime.now()
-    kopong = await eor(pong, "『⍟𝐊𝐎𝐍𝐓𝐎𝐋』")
-    await kopong.edit("◆◈𝐊𝐀𝐌𝐏𝐀𝐍𝐆◈◆")
-    await kopong.edit("𝐏𝐄𝐂𝐀𝐇𝐊𝐀𝐍 𝐁𝐈𝐉𝐈 𝐊𝐀𝐔 𝐀𝐒𝐔")
-    await kopong.edit("☬𝐒𝐈𝐀𝐏 𝐊𝐀𝐌𝐏𝐀𝐍𝐆 𝐌𝐄𝐍𝐔𝐌𝐁𝐔𝐊 𝐀𝐒𝐔☬")
-    end = datetime.now()
-    duration = (end - start).microseconds / 1000
-    user = await pong.client.get_me()
-    await kopong.edit(
-        f"✲ 𝙺𝙾𝙽𝚃𝙾𝙻 𝙼𝙴𝙻𝙴𝙳𝚄𝙶 "
-        f"\n ⫸ 𝙺𝙾𝙽𝚃𝙾𝙻 %sms \n"
-        f"✲ 𝙱𝙸𝙹𝙸 𝙿𝙴𝙻𝙴𝚁 "
-        f"\n ⫸ 𝙺𝙰𝙼𝙿𝙰𝙽𝙶『[{u
+    CMD_HELP[module_name] = command_dict
