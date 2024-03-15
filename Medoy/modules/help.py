@@ -1,119 +1,86 @@
-# Ayra - UserBot
-# Copyright (C) 2021-2022 senpai80
+
+# Credits: @mrismanaziz
+# Copyright (C) 2022 Pyro-ManUserbot
 #
-# This file is a part of < https://github.com/senpai80/Ayra/ >
+# This file is a part of < https://github.com/mrismanaziz/PyroMan-Userbot/ >
 # PLease read the GNU Affero General Public License in
-# <https://www.github.com/senpai80/Ayra/blob/main/LICENSE/>.
+# <https://www.github.com/mrismanaziz/PyroMan-Userbot/blob/main/LICENSE/>.
+#
+# t.me/SharingUserbot & t.me/Lunatic0de
 
-from Pyrogram.errors.rpcerrorlist import (
-    BotInlineDisabledError,
-    BotMethodInvalidError,
-    BotResponseTimeoutError,
-)
-from Pyrogram.tl.custom import Button
+from prettytable import PrettyTable
+from pyrogram import Client, enums, filters
+from pyrogram.types import Message
 
-from Medoy.dB._core import HELP, LIST
-from Medoy.fns.tools import cmd_regex_replace
+from Medoy.helpers.PyroHelpers import ReplyCheck
+from config import CMD_HANDLER
+from Medoy import CMD_HELP, app
+from Medoy.helpers.basic import edit_or_reply
+from Medoy.helpers.utility import split_list
+from Medoy import *
+from config import *
 
-from . import HNDLR, LOGS, OWNER_NAME, asst, Medoy_cmd, get_string, inline_pic, udB
-
-_main_help_menu = [
-    [
-        Button.inline(get_string("help_4"), data="uh_Official_"),
-        Button.inline(get_string("help_5"), data="uh_Addons_"),
-    ],
-    [Button.inline(get_string("help_10"), data="close")],
-]
-
-
-@Medoy_cmd(pattern="help( (.*)|$)")
-async def _help(Medoy):
-    plug = Medoy.pattern_match.group(1).strip()
-    chat = await Medoy.get_chat()
-    if plug:
+@Client.on_message(filters.command("help", CMD_HANDLER) & filters.me)
+async def module_help(client: Client, message: Message):
+    cmd = message.command
+    help_arg = ""
+    bot_username = (await app.get_me()).username
+    if len(cmd) > 1:
+        help_arg = " ".join(cmd[1:])
+    elif not message.reply_to_message and len(cmd) == 1:
         try:
-            if plug in HELP["Official"]:
-                output = f"**Plugin** - `{plug}`\n"
-                for i in HELP["Official"][plug]:
-                    output += i
-                output += "\n◈ Medoy Userbot"
-                await Medoy.eor(output)
-            elif HELP.get("Addons") and plug in HELP["Addons"]:
-                output = f"**Plugin** - `{plug}`\n"
-                for i in HELP["Addons"][plug]:
-                    output += i
-                output += "\n◈ Medoy Userbot"
-                await Medoy.eor(output)
-            else:
-                try:
-                    x = get_string("help_11").format(plug)
-                    for d in LIST[plug]:
-                        x += HNDLR + d
-                        x += "\n"
-                    x += "\n◈ Medoy Userbot"
-                    await Medoy.eor(x)
-                except BaseException:
-                    file = None
-                    compare_strings = []
-                    for file_name in LIST:
-                        compare_strings.append(file_name)
-                        value = LIST[file_name]
-                        for j in value:
-                            j = cmd_regex_replace(j)
-                            compare_strings.append(j)
-                            if j.strip() == plug:
-                                file = file_name
-                                break
-                    if not file:
-                        # the enter command/plugin name is not found
-                        text = f"`{plug}` is not a valid plugin!"
-                        if best_match := next(
-                            (
-                                _
-                                for _ in compare_strings
-                                if plug in _ and not _.startswith("_")
-                            ),
-                            None,
-                        ):
-                            text += f"\nDid you mean `{best_match}`?"
-                        return await Medoy.eor(text)
-                    output = f"**Command** `{plug}` **found in plugin** - `{file}`\n"
-                    if file in HELP["Official"]:
-                        for i in HELP["Official"][file]:
-                            output += i
-                    elif HELP.get("Addons") and file in HELP["Addons"]:
-                        for i in HELP["Addons"][file]:
-                            output += i
-                    output += "\n◈ Medoy Userbot"
-                    await Medoy.eor(output)
-        except BaseException as er:
-            LOGS.exception(er)
-            await Medoy.eor("Error 🤔 occured.")
-    else:
-        try:
-            results = await Medoy.client.inline_query(asst.me.username, "Medoy")
-        except BotMethodInvalidError:
-            z = []
-            for x in LIST.values():
-                z.extend(x)
-            cmd = len(z) + 10
-            if udB.get_key("MANAGER") and udB.get_key("DUAL_HNDLR") == "/":
-                _main_help_menu[2:2] = [[Button.inline("• Manager Help •", "mngbtn")]]
-            return await Medoy.reply(
-                get_string("inline_4").format(
-                    OWNER_NAME,
-                    len(HELP["Official"]),
-                    len(HELP["Addons"] if "Addons" in HELP else []),
-                    cmd,
+            nice = await client.get_inline_bot_results(bot=bot_username, query="helper")
+            await asyncio.gather(
+                message.delete(),
+                client.send_inline_bot_result(
+                    message.chat.id, nice.query_id, nice.results[0].id
                 ),
-                file=inline_pic(),
-                buttons=_main_help_menu,
             )
-        except BotResponseTimeoutError:
-            return await Medoy.eor(
-                get_string("help_2").format(HNDLR),
+        except BaseException as e:
+            print(f"{e}")
+            ac = PrettyTable()
+            ac.header = False
+            ac.title = "Medoy Userbot Plugins"
+            ac.align = "l"
+            for x in split_list(sorted(CMD_HELP.keys()), 2):
+                ac.add_row([x[0], x[1] if len(x) >= 2 else None])
+            xx = await client.send_message(
+                message.chat.id,
+                f"{str(ac)}\n• Medoy Userbot •",
+                reply_to_message_id=ReplyCheck(message),
             )
-        except BotInlineDisabledError:
-            return await Medoy.eor(get_string("help_3"))
-        await results[0].click(chat.id, reply_to=Medoy.reply_to_msg_id, hide_via=True)
-        await Medoy.delete()
+            await xx.reply(
+                f"Usage: {CMD_HANDLER}help broadcast To View Module Information"
+            )
+            return
+
+    if help_arg:
+        if help_arg in CMD_HELP:
+            commands: dict = CMD_HELP[help_arg]
+            this_command = f"Help For {str(help_arg).upper()}\n\n"
+            for x in commands:
+                this_command += f"Command: {str(x)}\nFunction: {str(commands[x])}\n\n"
+            this_command += "© Medoy Userbot"
+            await edit_or_reply(
+                message, this_command, parse_mode=enums.ParseMode.MARKDOWN
+            )
+        else:
+            await edit_or_reply(
+                message,
+                f"{help_arg} tidak ada dalam list modul.",
+            )
+
+
+
+def add_command_help(module_name, commands):
+    if module_name in CMD_HELP.keys():
+        command_dict = CMD_HELP[module_name]
+    else:
+        command_dict = {}
+
+    for x in commands:
+        for y in x:
+            if y is not x:
+                command_dict[x[0]] = x[1]
+
+    CMD_HELP[module_name] = command_dict
